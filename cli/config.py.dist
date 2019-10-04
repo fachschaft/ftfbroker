@@ -1,0 +1,3 @@
+KAFKA_SERVER = 'domain.de:port'
+KAFKA_USER = 'username'
+KAFKA_PASSWORD = 'supersecret'

@@ -1,0 +1,17 @@
+syntax = 'proto3';
+
+package ftfbroker.protobuf.common;
+
+message MetaDataV1 {
+    enum Environment {
+        UNKNOWN_ENVIRONMENT = 0 ; /* need a zero, but doesn't work with protobuf_to_dict */
+        PRODUCTION = 1;
+        DEVELOPMENT = 2;
+    }
+
+    string iso_date = 1;
+    Environment environment = 2;
+    string sending_service = 3;
+    int64 offset = 4;
+    int64 partition = 5;
+}

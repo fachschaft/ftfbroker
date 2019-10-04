@@ -1,0 +1,16 @@
+syntax = 'proto3';
+
+package ftfbroker.protobuf.ftf;
+import "ftfbroker/protobuf/common/metaData.proto";
+
+message RocketchatMensa {
+    oneof meta {
+        ftfbroker.protobuf.common.MetaDataV1 meta_v1 = 1;
+    }
+    oneof payload {
+        RocketchatMensaV1 payload_v1 = 2;
+    }
+}
+
+message RocketchatMensaV1 {
+}

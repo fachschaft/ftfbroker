@@ -1,0 +1,8 @@
+.vscode
+venv
+__pycache__
+
+cli/config.py
+
+.mypy_cache
+*.egg-info
