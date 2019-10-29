@@ -8,12 +8,19 @@ from google.protobuf.descriptor import (
     Descriptor as google___protobuf___descriptor___Descriptor,
 )
 
+from google.protobuf.internal.containers import (
+    RepeatedCompositeFieldContainer as google___protobuf___internal___containers___RepeatedCompositeFieldContainer,
+    RepeatedScalarFieldContainer as google___protobuf___internal___containers___RepeatedScalarFieldContainer,
+)
+
 from google.protobuf.message import (
     Message as google___protobuf___message___Message,
 )
 
 from typing import (
+    Iterable as typing___Iterable,
     Optional as typing___Optional,
+    Text as typing___Text,
     overload as typing___overload,
 )
 
@@ -60,9 +67,37 @@ class RocketchatMensa(google___protobuf___message___Message):
 class RocketchatMensaV1(google___protobuf___message___Message):
     DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
 
+    @property
+    def options(self) -> google___protobuf___internal___containers___RepeatedCompositeFieldContainer[Option]: ...
+
     def __init__(self,
+        *,
+        options : typing___Optional[typing___Iterable[Option]] = None,
         ) -> None: ...
     @classmethod
     def FromString(cls, s: builtin___bytes) -> RocketchatMensaV1: ...
     def MergeFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
     def CopyFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
+    if sys.version_info >= (3,):
+        def ClearField(self, field_name: typing_extensions___Literal[u"options"]) -> None: ...
+    else:
+        def ClearField(self, field_name: typing_extensions___Literal[u"options",b"options"]) -> None: ...
+
+class Option(google___protobuf___message___Message):
+    DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+    time = ... # type: typing___Text
+    users = ... # type: google___protobuf___internal___containers___RepeatedScalarFieldContainer[typing___Text]
+
+    def __init__(self,
+        *,
+        time : typing___Optional[typing___Text] = None,
+        users : typing___Optional[typing___Iterable[typing___Text]] = None,
+        ) -> None: ...
+    @classmethod
+    def FromString(cls, s: builtin___bytes) -> Option: ...
+    def MergeFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
+    def CopyFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
+    if sys.version_info >= (3,):
+        def ClearField(self, field_name: typing_extensions___Literal[u"time",u"users"]) -> None: ...
+    else:
+        def ClearField(self, field_name: typing_extensions___Literal[u"time",b"time",u"users",b"users"]) -> None: ...

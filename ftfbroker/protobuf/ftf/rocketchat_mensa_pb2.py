@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ftfbroker.protobuf.ftf',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n-ftfbroker/protobuf/ftf/rocketchat_mensa.proto\x12\x16\x66tfbroker.protobuf.ftf\x1a(ftfbroker/protobuf/common/metaData.proto\"\x9f\x01\n\x0fRocketchatMensa\x12\x38\n\x07meta_v1\x18\x01 \x01(\x0b\x32%.ftfbroker.protobuf.common.MetaDataV1H\x00\x12?\n\npayload_v1\x18\x02 \x01(\x0b\x32).ftfbroker.protobuf.ftf.RocketchatMensaV1H\x01\x42\x06\n\x04metaB\t\n\x07payload\"\x13\n\x11RocketchatMensaV1b\x06proto3')
+  serialized_pb=_b('\n-ftfbroker/protobuf/ftf/rocketchat_mensa.proto\x12\x16\x66tfbroker.protobuf.ftf\x1a(ftfbroker/protobuf/common/metaData.proto\"\x9f\x01\n\x0fRocketchatMensa\x12\x38\n\x07meta_v1\x18\x01 \x01(\x0b\x32%.ftfbroker.protobuf.common.MetaDataV1H\x00\x12?\n\npayload_v1\x18\x02 \x01(\x0b\x32).ftfbroker.protobuf.ftf.RocketchatMensaV1H\x01\x42\x06\n\x04metaB\t\n\x07payload\"D\n\x11RocketchatMensaV1\x12/\n\x07options\x18\x01 \x03(\x0b\x32\x1e.ftfbroker.protobuf.ftf.Option\"%\n\x06Option\x12\x0c\n\x04time\x18\x01 \x01(\t\x12\r\n\x05users\x18\x02 \x03(\tb\x06proto3')
   ,
   dependencies=[ftfbroker_dot_protobuf_dot_common_dot_metaData__pb2.DESCRIPTOR,])
 
@@ -79,6 +79,13 @@ _ROCKETCHATMENSAV1 = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='options', full_name='ftfbroker.protobuf.ftf.RocketchatMensaV1.options', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -92,7 +99,45 @@ _ROCKETCHATMENSAV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=277,
-  serialized_end=296,
+  serialized_end=345,
+)
+
+
+_OPTION = _descriptor.Descriptor(
+  name='Option',
+  full_name='ftfbroker.protobuf.ftf.Option',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='time', full_name='ftfbroker.protobuf.ftf.Option.time', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='users', full_name='ftfbroker.protobuf.ftf.Option.users', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=347,
+  serialized_end=384,
 )
 
 _ROCKETCHATMENSA.fields_by_name['meta_v1'].message_type = ftfbroker_dot_protobuf_dot_common_dot_metaData__pb2._METADATAV1
@@ -103,8 +148,10 @@ _ROCKETCHATMENSA.fields_by_name['meta_v1'].containing_oneof = _ROCKETCHATMENSA.o
 _ROCKETCHATMENSA.oneofs_by_name['payload'].fields.append(
   _ROCKETCHATMENSA.fields_by_name['payload_v1'])
 _ROCKETCHATMENSA.fields_by_name['payload_v1'].containing_oneof = _ROCKETCHATMENSA.oneofs_by_name['payload']
+_ROCKETCHATMENSAV1.fields_by_name['options'].message_type = _OPTION
 DESCRIPTOR.message_types_by_name['RocketchatMensa'] = _ROCKETCHATMENSA
 DESCRIPTOR.message_types_by_name['RocketchatMensaV1'] = _ROCKETCHATMENSAV1
+DESCRIPTOR.message_types_by_name['Option'] = _OPTION
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 RocketchatMensa = _reflection.GeneratedProtocolMessageType('RocketchatMensa', (_message.Message,), {
@@ -120,6 +167,13 @@ RocketchatMensaV1 = _reflection.GeneratedProtocolMessageType('RocketchatMensaV1'
   # @@protoc_insertion_point(class_scope:ftfbroker.protobuf.ftf.RocketchatMensaV1)
   })
 _sym_db.RegisterMessage(RocketchatMensaV1)
+
+Option = _reflection.GeneratedProtocolMessageType('Option', (_message.Message,), {
+  'DESCRIPTOR' : _OPTION,
+  '__module__' : 'ftfbroker.protobuf.ftf.rocketchat_mensa_pb2'
+  # @@protoc_insertion_point(class_scope:ftfbroker.protobuf.ftf.Option)
+  })
+_sym_db.RegisterMessage(Option)
 
 
 # @@protoc_insertion_point(module_scope)

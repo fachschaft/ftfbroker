@@ -13,4 +13,10 @@ message RocketchatMensa {
 }
 
 message RocketchatMensaV1 {
+    repeated Option options = 1;
+}
+
+message Option {
+    string time = 1;
+    repeated string users = 2;
 }

@@ -1,7 +1,9 @@
 from typing import Any
 
 import configloader as c
-from ftfbroker.producer import AutomateStockProducer, GeneralProducer
+from ftfbroker.producer import (
+    AutomateStockProducer, GeneralProducer, RocketchatMensaProducer
+)
 from ftfbroker.protobuf.ftf.automate_stock_pb2 import (
     AutomateStock, AutomateStockV1
 )
@@ -53,6 +55,19 @@ def send_with_special_producer_static(args: Any) -> None:
     AutomateStockProducer.flush_()
 
 
+def send_rocketchat_mensa_example(args: Any) -> None:
+    # GeneralProducer.init_module() would also be possible
+    RocketchatMensaProducer.init_module(**args)
+
+    payload = [
+        ('11:30', ['Person A', 'Person B']),
+        ('12:00', ['Person C'])
+    ]
+
+    RocketchatMensaProducer.sendV1_(payload)
+    RocketchatMensaProducer.flush_()
+
+
 if __name__ == '__main__':
     args = {
         'kafka_server': c.KAFKA_SERVER,
@@ -64,6 +79,7 @@ if __name__ == '__main__':
         send_with_generic_producer_static,
         send_with_special_producer_instance,
         send_with_special_producer_static,
+        send_rocketchat_mensa_example,
     ]
 
     for i, f in enumerate(func):
