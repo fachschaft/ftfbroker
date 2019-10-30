@@ -18,7 +18,7 @@ sort_import:
 	isort -rc $(FILES) --skip=$(EXCLUDE)
 
 verify_import:
-	isort --check-only -rc $(FILES)
+	isort --check-only -rc $(FILES) --skip=$(EXCLUDE)
 
 .ONESHELL:
 release:

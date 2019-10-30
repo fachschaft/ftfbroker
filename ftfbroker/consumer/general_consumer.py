@@ -1,6 +1,6 @@
+import json
 import logging
 import ssl
-import json
 import threading
 from time import sleep
 from typing import Generator, List, Optional, Tuple

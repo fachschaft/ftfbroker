@@ -1,7 +1,7 @@
 import logging
 
 try:
-    from config import *  # noqa F401, F403
+    from config import KAFKA_USER, KAFKA_SERVER, KAFKA_PASSWORD  # noqa F401
 except ModuleNotFoundError:
     raise Exception(
         'Please provide the login credentials in a config.py (Template available in config.py.dist)') from None

@@ -1,13 +1,14 @@
 from typing import Any
 
 import configloader as c
-from ftfbroker.consumer import GeneralConsumer
 from ftfbroker import topic
+from ftfbroker.consumer import GeneralConsumer
+
 
 def listen_all_ftf_topics(args: Any) -> None:
     consumer = GeneralConsumer(
-        **args,
         topic_pattern="^ftf_.*",
+        **args,
     )
 
     for key, message in consumer.consume():
@@ -26,8 +27,8 @@ def listen_single_ftf_topic(args: Any) -> None:
     index = int(input("Choose a topic:"))
 
     consumer = GeneralConsumer(
+        topics=[topics[index - 1]],
         **args,
-        topics=[topics[index-1]],
     )
 
     for key, message in consumer.consume():
