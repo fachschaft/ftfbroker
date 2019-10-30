@@ -1,5 +1,5 @@
 import logging
-from typing import List, Tuple
+from typing import Iterable, Tuple
 
 from ftfbroker.producer.general_producer import GeneralProducer
 from ftfbroker.protobuf.ftf.rocketchat_mensa_pb2 import (
@@ -9,7 +9,7 @@ from ftfbroker.protobuf.ftf.rocketchat_mensa_pb2 import (
 logger = logging.getLogger(__name__)
 
 
-def _create_envelop(options: List[Tuple[str, List[str]]]) -> RocketchatMensa:
+def _create_envelop(options: Iterable[Tuple[str, Iterable[str]]]) -> RocketchatMensa:
     payload = RocketchatMensaV1()
 
     opts = [Option(time=t, users=u) for t, u in options]
@@ -19,7 +19,7 @@ def _create_envelop(options: List[Tuple[str, List[str]]]) -> RocketchatMensa:
 
 
 class RocketchatMensaProducer(GeneralProducer):
-    def sendV1(self, options: List[Tuple[str, List[str]]]) -> None:
+    def sendV1(self, options: Iterable[Tuple[str, Iterable[str]]]) -> None:
         """
         Expect options in the form:
 
@@ -32,5 +32,5 @@ class RocketchatMensaProducer(GeneralProducer):
         super().send(_create_envelop(options))
 
     @classmethod
-    def sendV1_(cls, options: List[Tuple[str, List[str]]]) -> None:
+    def sendV1_(cls, options: Iterable[Tuple[str, Iterable[str]]]) -> None:
         cls.instance().send(_create_envelop(options))
