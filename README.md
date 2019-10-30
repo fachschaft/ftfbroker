@@ -1,5 +1,7 @@
 # FTF Broker
 
+[![Build Status](https://travis-ci.org/fachschaft/ftfbroker.svg?branch=master)](https://travis-ci.org/fachschaft/ftfbroker)
+
 This repository contains protobuf schema definitions and typed python consumer/producer for ftf services
 
 ## Usage
