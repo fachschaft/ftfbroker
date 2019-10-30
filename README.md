@@ -18,3 +18,11 @@ All supported environment variables are listed and documented in [environment.py
 - You **may** add new optional or repeated fields but you must use fresh tag numbers (i.e. tag numbers that were never used in this protocol buffer, not even by deleted fields).
 
 For further details see [protobuf docs](https://developers.google.com/protocol-buffers/docs/pythontutorial#extending-a-protocol-buffer)
+
+## Release a new version
+
+```shell
+$ make release
+# Enter version
+$ git push --tags
+```

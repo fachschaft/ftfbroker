@@ -19,3 +19,11 @@ sort_import:
 
 verify_import:
 	isort --check-only -rc $(FILES)
+
+.ONESHELL:
+release:
+	@read -p "Enter version:" version
+	echo __version__ = \'$$version\' > ftfbroker/__init__.py
+	git add ftfbroker/__init__.py
+	git commit -m "Release version $$version"
+	git tag $$version
