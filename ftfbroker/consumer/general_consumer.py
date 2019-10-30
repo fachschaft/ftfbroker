@@ -1,8 +1,9 @@
 import logging
 import ssl
+import json
 import threading
 from time import sleep
-from typing import Generator, List, Optional
+from typing import Generator, List, Optional, Tuple
 
 from google.protobuf.message import Message as ProtobufMessage
 from kafka import KafkaConsumer
@@ -59,17 +60,18 @@ class GeneralConsumer:
                 sasl_plain_username=self.kafka_user,
                 security_protocol='SASL_SSL',
                 ssl_context=self.ssl_context,
+                key_deserializer=lambda x: None if x is None else x.decode('utf-8')
             )
             if self.topics:
-                self.consumer.subscribe(self.topics)
+                self.consumer.subscribe(topics=self.topics)
                 logger.info(f'Consumer created for topics: {self.topics}')
             else:
-                self.consumer.subscribe(self.topic_pattern)
+                self.consumer.subscribe(pattern=self.topic_pattern)
                 logger.info(f'Consumer created for topics: {self.topic_pattern}')
         except Exception as e:
             raise BrokerException('Error while creating a consumer') from e
 
-    def consume(self) -> Generator[ProtobufMessage, None, None]:
+    def consume(self) -> Generator[Tuple[Optional[str], ProtobufMessage], None, None]:
         if self.consumer is None:
             raise BrokerException('Cannot consume. Consumer is None')
 
@@ -78,9 +80,13 @@ class GeneralConsumer:
                 for message in self.consumer:
                     try:
                         logger.debug(f"Message on {message.topic} received. Message: {message}")
-                        protobuf = protoutils.load_message(message.topic, message.value)
-                        protoutils.load_meta(protobuf, message)
-                        yield protobuf
+                        try:
+                            protobuf = protoutils.load_message(message.topic, message.value)
+                            protoutils.load_meta(protobuf, message)
+                            yield message.key, protobuf
+                        except ValueError:
+                            # Fallback: try to parse json
+                            yield message.key, json.loads(message.value.decode('utf-8'))
                     except Exception as e:
                         raise BrokerException(
                             f'Consuming message from topic {message.topic} failed. Message: {message}') from e
